@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>MIXMOVE Platform · proposta de design</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--gray-50);color:var(--ink-900);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:clamp(40px,7vw,88px) clamp(16px,5vw,48px)}
+.ov{display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#24773a}
+.ov::before{content:"";width:22px;height:2px;border-radius:2px;background:currentColor}
+h1{margin-top:18px;font-weight:800;font-size:clamp(32px,4.4vw,54px);line-height:1.04;letter-spacing:-.03em;max-width:18ch;text-wrap:balance}
+p.lede{margin-top:16px;max-width:62ch;color:#4f544e;font-size:17px;line-height:1.6}
+.grid{margin-top:40px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+a.card{display:block;background:#fff;border-radius:16px;overflow:hidden;color:inherit;text-decoration:none;
+  box-shadow:0 1px 3px rgba(20,22,20,.06),0 24px 50px -30px rgba(20,22,20,.45);transition:transform .2s}
+a.card:hover{transform:translateY(-3px)}
+a.card img{display:block;width:100%;height:auto;border-bottom:1px solid rgba(20,22,20,.08)}
+.card b{display:flex;align-items:center;gap:9px;padding:16px 18px 4px;font-size:18px;font-weight:800;letter-spacing:-.01em}
+.card i{width:9px;height:9px;border-radius:50%;background:#49c263}.card i.di{background:#106fd4}
+.card span{display:block;padding:0 18px 18px;color:#5f645e;font-size:14px;line-height:1.5}
+.note{margin-top:36px;font-size:14px;color:#5f645e;max-width:70ch;line-height:1.6}
+@media(max-width:820px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <span class="ov">MIXMOVE · Platform</span>
+  <h1>Proposta de design da secção Platform</h1>
+  <p class="lede">Três páginas: a overview da plataforma e as páginas de produto MIXMOVE HUB OS e MIXMOVE DI. As páginas de produto ligam a dois exemplos do template de módulo.</p>
+  <div class="grid">
+    <a class="card" href="platform.html"><img src="assets/thumbs/final-platform.png" alt="Página /platform"><b><i></i>Platform</b><span>Overview: os dois produtos, o closed loop, shared modules, integrações, compliance e proof.</span></a>
+    <a class="card" href="hub-os.html"><img src="assets/thumbs/final-hub-os.png" alt="Página MIXMOVE HUB OS"><b><i></i>MIXMOVE HUB OS</b><span>Execução no hub: fluxo operacional, os 7 módulos, product in action e proof.</span></a>
+    <a class="card" href="di.html"><img src="assets/thumbs/final-di.png" alt="Página MIXMOVE DI"><b><i class="di"></i>MIXMOVE DI</b><span>Decisão na rede: da encomenda à fatura auditada, os 7 módulos e proof.</span></a>
+  </div>
+  <p class="note">Proposta de design, não é o site live. O menu, o rodapé e os links para solutions e success stories abrem o site atual da MIXMOVE. As páginas que ainda não estão desenhadas mostram um aviso.</p>
+</main>
+</body>
+</html>

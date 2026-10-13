@@ -1,0 +1,81 @@
+/* ============================================================
+   MIXMOVE — Platform — design tokens (variables only)
+   ------------------------------------------------------------
+   Values are the brand tokens used across the Solutions and
+   Case Studies builds (extracted from Figma "Page-Test").
+   This file deliberately defines NO element or class rules:
+   the production Webflow stylesheet already owns generic names
+   (.display, .container, .card, .btn …) and would collide.
+   Every page class is prefixed `pf-`.
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
+
+:root{
+  /* Ink + neutrals */
+  --ink-950:#161717;
+  --ink-900:#1e1f1e;
+  --ink-800:#242625;
+  --ink-700:#2c2e2d;
+  --gray-50:#f6f7f6;
+  --gray-100:#eef0ee;
+  --gray-200:#dde0dd;
+  --gray-300:#c5c9c5;
+  --gray-400:#9ba09b;
+  --gray-500:#71776f;
+  --gray-600:#565b55;
+  --white:#ffffff;
+
+  /* Brand green (MIXMOVE HUB OS + brand accent) */
+  --green-500:#49c263;   /* numbers, buttons, accents on dark */
+  --green-700:#2e8c44;   /* small text / links on light (AA) */
+  --green-900:#0e220e;   /* text on a green button */
+  --green-deep:#255525;
+  --green-soft:rgba(73,194,99,.12);
+  --green-line:rgba(73,194,99,.32);
+
+  /* MIXMOVE DI blue */
+  --blue-500:#106fd4;
+  --blue-400:#3d93ea;    /* DI blue on dark backgrounds */
+  --blue-soft:rgba(16,111,212,.12);
+  --blue-line:rgba(16,111,212,.34);
+
+  --cream:#fef3d0;
+
+  /* Text */
+  --text-on-dark:#f4f5f2;
+  --text-on-dark-dim:rgba(244,245,242,.66);
+  --text-on-light:var(--ink-900);
+  --text-on-light-dim:#5b5f5b;
+  --line-dark:rgba(255,255,255,.10);
+  --line-light:rgba(20,22,20,.10);
+
+  /* Type */
+  --font:'Raleway','Raleway Variablefont Wght',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;
+
+  /* Layout — production values (Relume): container-large 80rem, gutter 5%, nav 6rem fixed */
+  --nav-h:6rem;
+  --container:80rem;
+
+  /* Signature chamfer (top-left + bottom-right). Use with .pf-cut */
+  --corner-tl:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Cpath d='M32,0L34,0L34,34L0,34L0,32Z'/%3E%3C/svg%3E");
+  --corner-br:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Cpath d='M0,0L34,0L34,2L2,34L0,34Z'/%3E%3C/svg%3E");
+  --sq:linear-gradient(#000,#000);
+}
+
+/* The one shared helper: chamfered corners via mask.
+   Set --cut on the element (default 28px). A masked surface cannot cast an
+   outer box-shadow — hang shadows on a wrapper (filter:drop-shadow works on
+   the wrapper) or use an inset ring. For a 1px outline that follows the
+   diagonal, nest two .pf-cut layers (outer = line colour + padding:1px). */
+.pf-cut{
+  --cut:28px;
+  border-radius:0 var(--cut) 0 var(--cut);
+  -webkit-mask-image:var(--corner-tl),var(--corner-br),var(--sq),var(--sq);
+          mask-image:var(--corner-tl),var(--corner-br),var(--sq),var(--sq);
+  -webkit-mask-size:calc(var(--cut) + 2px) calc(var(--cut) + 2px),calc(var(--cut) + 2px) calc(var(--cut) + 2px),calc(100% - var(--cut)) calc(100% - var(--cut)),calc(100% - var(--cut)) calc(100% - var(--cut));
+          mask-size:calc(var(--cut) + 2px) calc(var(--cut) + 2px),calc(var(--cut) + 2px) calc(var(--cut) + 2px),calc(100% - var(--cut)) calc(100% - var(--cut)),calc(100% - var(--cut)) calc(100% - var(--cut));
+  -webkit-mask-position:0 0,100% 100%,100% 0,0 100%;
+          mask-position:0 0,100% 100%,100% 0,0 100%;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+}
