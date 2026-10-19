@@ -1810,8 +1810,12 @@ preview(rows[0]);
     return out;
   }
 
+  /* One pulse train along the whole route: same dash period and speed in every
+     section, phased by the route length before it, so dashes cross section seams. */
+  var PER = 1100, DASH = 110, SPEED = 240;
   function draw(){
     var isD = window.innerWidth >= 992, SM = isD ? seams() : null;
+    var acc = 0, T = PER / SPEED, ph = -((performance.now() / 1000) % T);
     secs.forEach(function(sec){
       var svg = q(sec,'.pf-flow'); if (!svg) return;
       var name = sec.getAttribute('data-flow'), R = rails(sec), W = sec.offsetWidth, H = sec.offsetHeight;
@@ -1824,12 +1828,14 @@ preview(rows[0]);
         var base = el('path',{d:d,'class':'pf-fl-base' + (seg.tap ? ' pf-fl-tap' : '')},svg);
         if (seg.tap) return;
         var pulse = el('path',{d:d,'class':'pf-fl-pulse'},svg);
-        var len = base.getTotalLength(), segL = Math.min(110, Math.max(60, len*0.12));
-        pulse.style.strokeDasharray = segL+' '+(len+segL);
-        pulse.style.setProperty('--len', len);
-        pulse.style.setProperty('--seg', segL);
-        pulse.style.setProperty('--dur', Math.max(3, len/240).toFixed(2)+'s');
-        if (STILL) pulse.style.strokeDashoffset = -(len*0.38);
+        var len = base.getTotalLength(), o = acc % PER;
+        acc += len;
+        pulse.style.strokeDasharray = DASH+' '+(PER-DASH);
+        pulse.style.setProperty('--len', o + 'px');
+        pulse.style.setProperty('--seg', (PER - o) + 'px');
+        pulse.style.setProperty('--dur', T.toFixed(3)+'s');
+        pulse.style.animationDelay = ph.toFixed(3)+'s';
+        if (STILL) pulse.style.strokeDashoffset = o - PER*0.38;
       });
       (spec.dots||[]).forEach(function(p){
         el('circle',{cx:p.x,cy:p.y,r:11,'class':'pf-fl-dot-halo'},svg);
